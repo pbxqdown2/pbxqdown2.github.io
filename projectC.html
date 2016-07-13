@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>ProjectC</title>
+		<style>
+			body, html { 
+        			width: 100%;
+        			height: 100%;
+        			border: 0px;
+        			/*border-style:dotted;*/
+        			padding: 0px;
+        			margin: 0px;
+      			}
+			#webgl{
+				width: 100%;
+				height:100%;
+				/*width: 600px;
+				height:600px;*/
+				
+			}
+		</style>
+	</head>
+	<body onload="main()">
+		<h2>User Instruction</h2>
+		<h3>1.View Control</h3>
+		<p>Drag mouse to aim a point, use 'Z' to move forward and 'X' to move backward. Press left and right arrow keys to  slide sideways left/right; Press up and down arrow keys to move up and down. </p>
+		<h3>2.Mode Control</h3>
+		<p>
+			There are 10 modes which can be switched to by pressing corresponding number keys:<br>
+			Press key '1' to switch to Phong lighting with Gouraud Shading mode;<br>
+			Press key '2' to switch to  Blinn-Phong lighting with Gouraud Shading mode;<br>
+			Press key '3' to switch to  Phong lighting with Phong Shading mode;<br>
+			Press key '4' to switch to  Blinn-Phong lighting with Phong Shading mode;<br>
+			Press key '5' to switch to Cook-Torrance Shader mode;<br>
+			Press key '6' to switch to Texture mode;<br>
+			Press key '7' to switch to None distance dependencies mode;<br>
+			Press key '8' to switch to distance dependencies mode with  1/dist;<br>
+			Press key '9' to switch to distance dependencies mode with  1/dist<sup>2</sup>;<br>
+			Press key '0' to switch to Distortion mode;<br>
+			Press 'G' to change to a view point that is easy to compare different modes.<br>
+		</p>
+
+		<h3>3.Light source Control</h3>
+			There are two light sources in my work. Light source 1 is a headlight source, light source 2 is initially on the top of z axis.<br>
+			Key 'T' is used like the key 'shift' in my work. <br> 
+			Press 'J' to move light source 2 along -x direction and press 'T'+'J' to move light source 2 along +x direction;<br>
+			Press 'L' to move light source 2 along -y direction and press 'T'+'L' to move light source 2 along +y direction;<br>
+			Press 'K' to move light source 2 along -z direction and press 'T'+'K' to move light source 2 along +z direction;<br>
+			Press 'U' to turn on/off ambient term of light source 1,  Press 'I' to turn on/off diffuse term of light source 1,  Press 'O' to turn on/off specular term of light source 1;<br>
+			Press 'B' to turn on/off ambient term of light source 2,  Press 'N' to turn on/off diffuse term of light source 2,  Press 'M' to turn on/off specular term of light source 2;<br>
+			Use form below to adjust parameters of ambient,diffuse and specular parts of light source 2;<br>
+			
+		<p>
+
+		</p>
+
+		<h3>4.Flying-airplane navigation controls</h3>
+		<p>
+			Press 'C' to make velocity smaller and 'T'+'C' to make velocity larger. Check console for current velocity.<br>
+			Press 'V' to make camera roll counter clockwise and 'T'+'V' to make camera roll clockwise.
+		</p>
+		<h3>5.Trackball control</h3>
+		<p>Press 'H' and drag mouse to make the clock rotate. If you don't press 'H' the viewpoint will also rotate.</p>
+		<h3>6.Adjustable joints</h3>
+		<p>
+			Press  'P' to make the rotation angle of hand larger and 'T'+'P' to make rotation angle smaller.<br>
+			Press  'Y' to make the rotation angle of finger larger and 'T'+'Y' to make rotation angle smaller.
+		</p>
+		<h3>7.Miscellaneous</h3>
+		<p>
+			
+			Press Q and E to change the size of robot and R and F to change the size of the clock.<br>
+			Press W,A,S,D to change the robot's leg. Click to change the position of the robot.
+		</p>
+		<canvas id="webgl">
+		Please use a browser that supports "canvas"
+		</canvas>
+		<p>
+			<div id= "CurAngleDisplay"></div> 
+			New Current Angle (-180 < x < +180 deg): 
+			--><input id='usrAngle' size=10> 
+			<button type="button" onClick='angleSubmit()'>Submit</button><BR> 
+
+			Adjust parameters of ambient,diffuse and specular parts:(Caution: when input number with number keys the mode may be changed; After clicking the submit button, press number keys to change to the appropriate mode.)<br>
+			AmbR:<input id='ambR' size=10> 
+			AmbG:<input id='ambG' size=10> 
+			AmbB:<input id='ambB' size=10> 
+			<button type="button" onClick='ambSubmit()'>Submit</button><BR> 
+			DifR:&nbsp&nbsp&nbsp<input id='difR' size=10> 
+			DifG:&nbsp&nbsp&nbsp<input id='difG' size=10> 
+			DifB:&nbsp&nbsp&nbsp<input id='difB' size=10> 
+			<button type="button" onClick='difSubmit()'>Submit</button><BR> 
+			SpeR:&nbsp<input id='speR' size=10> 
+			SpeG:&nbsp<input id='speG' size=10> 
+			SpeB:&nbsp<input id='speB' size=10> 
+			<button type="button" onClick='speSubmit()'>Submit</button><BR> 
+			<button type="button" onClick='clearLight()'>Clear Adjustment</button>
+
+			<div id='Mouse'> Mouse Drag totals (CVV coords) </div>
+			<button type="button" onClick='clearDrag()'>Clear</button>
+		<p>
+			<button type="button" onclick="spinDown()">Spin << </button>
+			<button type="button" onclick="runStop()">Run/Stop</button>
+			<button type="button" onclick="spinUp()">Spin >> </button>
+		</p>
+		<script src="lib/webgl-utils.js"></script>
+		<script src="lib/webgl-debug.js"></script>
+		<script src="lib/cuon-utils.js"></script>
+		<script src="lib/cuon-matrix-mod.js"></script>
+		<script src="lib/cuon-matrix-quat.js"></script>
+		<script src="XiaoQian_ProjectC.js"></script>
+	</body>
+</html>
